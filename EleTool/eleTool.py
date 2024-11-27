@@ -28,7 +28,7 @@ class ElectricityPlugin(Plugin):
         # 从全局配置获取插件配置
         self.config = self.load_config()
         if not self.config:
-            self.config = plugin_config.get("electricity_plugin", {})
+            self.config = plugin_config.get("eleTool", {})
         logger.info(f"[电费插件] 初始化完成，配置信息：{self.config}")
         self.start_monitoring()
 
@@ -102,7 +102,7 @@ class ElectricityPlugin(Plugin):
                 except Exception as e:
                     logger.error(f"[电费插件] 监控任务出错：{str(e)}")
                 finally:
-                    # 从配置中获取检查间隔，默认为3600秒即一分钟
+                    # 从配置中获取检查间隔，默认为3600秒即一小时
                     check_interval = self.config.get("check_interval", 3600)
                     time.sleep(check_interval)
 
